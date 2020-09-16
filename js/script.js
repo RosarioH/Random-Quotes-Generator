@@ -21,7 +21,7 @@ const quotes = [
   { 
     quote: "Success is not final, failure is not fatal: it is the courage to continue that counts." ,
     source: 'Winston Churchill',
-    citation: ' ',
+    citation: '',
     year: ''
   },
   { 
@@ -33,13 +33,13 @@ const quotes = [
   { 
     quote: "Sometimes people don't want to hear the truth because they dont want their illusions destroyed." ,
     source: 'Fredrich Nietzsche',
-    citation: ' ',
+    citation: '',
     year: ''  
   },
   { 
     quote: "Our greatest glory is not in never falling, but in rising every time we fall." ,
     source: 'Confusius',
-    citation: ' ',
+    citation: '',
     year: '' 
   },
   { 
@@ -57,8 +57,9 @@ const quotes = [
 ***/
 
 function getRandomQuote(){
-
+  //Find random number  
   let randomNumber = Math.floor(Math.random() * quotes.length);
+  //Add random number to quotes array
   let randomQuote = quotes[randomNumber];
 
   return randomQuote;
@@ -71,23 +72,38 @@ function getRandomQuote(){
 ***/
 
 function printQuote() {
+  //Get getRandomQuote function to apply random quotes 
   let quote = getRandomQuote();
-
   
-  let html = '<p class = "quote">'
-  html += quote.quote;
-  html += '</p>';
-  html += '<p class="source" >';
-  html += quote.source;
-  html += '<span class= "citation">';
-  html += quote.citation;
-  html += '</span>';
-  html += '<span class= "year">';
-  html += quote.year;
-  html += '</span>' +'</p>';
+  let html = '<p class = "quote">' + quote.quote + '</p>';
+  html += '<p class="source" >' + quote.source;
+  
+  let div = document.getElementById("quote-box");
+  div.innerHTML = html;
+  //Checks if citation and year from quote is empty then closes html string
+  if (quote.citation === '' && quote.year === ''){
+    div.innerHTML = html.concat('</p>')
+    
+  }
+  //check if both citation and year not empty and then adds string
+  else  if (quote.citation !== '' && quote.year !== ''){
 
-  var div = document.getElementById("quote-box");
-  div.innerHTML = html
+      let citationHtml = '<span class= "citation">' + quote.citation + '</span>';
+      let yearHtml = '<span class= "year">' + quote.year + '</span>' + '</p>';
+      div.innerHTML =html.concat(citationHtml, yearHtml)
+
+  }
+  // If year not empty add year 
+  else if (quote.year !== ''){
+    let yearHtml = '<span class= "year">' + quote.year + '</span>' + '</p>';
+    div.innerHTML =html.concat(yearHtml)
+
+  }
+  // If citation not empty add citation
+  else if (quote.citation !== ''){
+    let citationHtml = '<span class= "citation">' + quote.citation + '</span>'+ '</p>';
+    div.innerHTML =html.concat(citationHtml)
+  }
 }
 
 /***
