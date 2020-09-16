@@ -58,9 +58,9 @@ const quotes = [
 
 function getRandomQuote(){
   //Find random number  
-  let randomNumber = Math.floor(Math.random() * quotes.length);
+  const randomNumber = Math.floor(Math.random() * quotes.length);
   //Add random number to quotes array
-  let randomQuote = quotes[randomNumber];
+  const randomQuote = quotes[randomNumber];
 
   return randomQuote;
   //
@@ -73,12 +73,12 @@ function getRandomQuote(){
 
 function printQuote() {
   //Get getRandomQuote function to apply random quotes 
-  let quote = getRandomQuote();
+  const quote = getRandomQuote();
   
   let html = '<p class = "quote">' + quote.quote + '</p>';
   html += '<p class="source" >' + quote.source;
   
-  let div = document.getElementById("quote-box");
+  const div = document.getElementById("quote-box");
   div.innerHTML = html;
   //Checks if citation and year from quote is empty then closes html string
   if (quote.citation === '' && quote.year === ''){
@@ -88,25 +88,25 @@ function printQuote() {
   //check if both citation and year not empty and then adds string
   else  if (quote.citation !== '' && quote.year !== ''){
 
-      let citationHtml = '<span class= "citation">' + quote.citation + '</span>';
-      let yearHtml = '<span class= "year">' + quote.year + '</span>' + '</p>';
+      const citationHtml = '<span class= "citation">' + quote.citation + '</span>';
+      const yearHtml = '<span class= "year">' + quote.year + '</span>' + '</p>';
       div.innerHTML =html.concat(citationHtml, yearHtml)
 
   }
   // If year not empty add year 
   else if (quote.year !== ''){
-    let yearHtml = '<span class= "year">' + quote.year + '</span>' + '</p>';
+    const yearHtml = '<span class= "year">' + quote.year + '</span>' + '</p>';
     div.innerHTML =html.concat(yearHtml)
 
   }
   // If citation not empty add citation
   else if (quote.citation !== ''){
-    let citationHtml = '<span class= "citation">' + quote.citation + '</span>'+ '</p>';
+    const citationHtml = '<span class= "citation">' + quote.citation + '</span>'+ '</p>';
     div.innerHTML =html.concat(citationHtml)
   }
   
-  var randcol= "";
-  var allchar="0123456789ABCDEF";
+  let randcol= "";
+  const allchar="0123456789ABCDEF";
 
   for(var i=0; i<6; i++){
     randcol += allchar[Math.floor(Math.random()*16)];
